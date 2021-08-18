@@ -1,0 +1,2 @@
+# How-to-use-nnUNet-DeepMedic-for-brain-tumor-segmentation
+In this project you will find a tutorial on how to train or/and use a pre-trained model of two neural network models designed for medical imaging segmentation, especially brain tumor segmentation: deepMedic and nnUnet.  With the help of this project you will be able to install one of these two frameworks in a linux operating system and use them to segment brain tumors.
