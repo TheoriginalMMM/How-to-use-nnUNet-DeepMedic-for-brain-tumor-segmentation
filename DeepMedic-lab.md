@@ -4,7 +4,7 @@
 
 - [How to use the pre-trained model to segment brain tumors?](#How to use the pre-trained model to segment brain tumors?)
 
-- [How can I use my local data to try to improve the pre-trained model?](#How can I use my local data to try to improve the pre-trained model?)
+- [How can I use my local data to train the  model?](#How can I use my local data to train the  model?)
 
 - [How can I prepare my data?](#How can I prepare my data?)
 
@@ -86,13 +86,13 @@ $ export LD_LIBRARY_PATH=/path/to/cuda/lib64
 $ export PATH=/path/to/cuda/bin:$PATH
 
 ```
-#PS: to get the path of cuda check the top of this document
+**PS: To get the path of cuda check the top of this document**
 
 And finally to get acceleration and have fast segmentation you have to check if cuDNN is installed with this command, if you don't get the same output you can easily install it with these commands:
 ```bash
 #To check if cuDNN is already installed (REPLACE PATH/TO/CUDA)
 cat /path/to/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
-#if you have something like this as output  you havec cuDNN installed before
+#if you have something like this as output  you have cuDNN installed before
 $ cat /usr/local/cuda-11.4/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
 #define CUDNN_MAJOR 8
 #define CUDNN_MINOR 2
@@ -159,3 +159,71 @@ tensorboard --logdir=./examples/output/tensorboard/trainSessionWithValidTiny
 #Finished.
 
 ```
+
+#How to use the pre-trained model to segment brain tumors?
+It is possible to use the model just to segment tumors, but before doing that you need to design a model with the configuration file and train the model first to find the right parameters. For more details on how to run the training on your database click here.
+
+Suppose you have already a pre trained model, that you can use it to segment tumors by following one of these two methods.
+
+```bash
+#1 A model is specified straight from the command line
+./deepMedicRun -model ./examples/configFiles/deepMedic/model/modelConfig.cfg \
+               -test ./examples/configFiles/deepMedic/test/testConfig.cfg \
+               -load ./path-to-saved-model/filename.model.ckpt \
+               -dev cuda0
+#2 Or the path to a saved model can be instead specified in the testing config file, and then the -load option can be ommited. Note: A file specified by -load option overrides any specified in the config-file.           
+```
+After the model is loaded, inference will be performed on the testing subjects. Predicted segmentation masks, posterior probability maps for each class, as well as the feature maps of any layer can be saved. If ground-truth is provided, DeepMedic will also report DSC metrics for its predictions.
+
+The test configuration file contains several testing settings which you can find detailed information about here, including examples for image segmentation here.
+
+
+**Testing Parameters**
+
+*Main Parameters:*
+
+- sessionName: The name for the session, to use for saving the logs and inference results.
+- folderForOutput: The output folder to save logs and results.
+- cnnModelFilePath: The path to the cnn model to use. Disregarded if specified from command line.
+- channels: List of paths to the files that list the files of channels per testing case. Similar to the corresponding parameter for training.
+- namesForPredictionsPerCase: Path to a file that lists the names to use for saving the prediction for each subject.
+- roiMasks: If masks for a restricted Region-Of-Interest can be made, inference will only be performed within it. If this parameter is omitted in the config file, whole volume is scanned.
+- gtLabels: Path to a file that lists the file-paths to Ground Truth labels per case. Not required for testing, but if given, DSC accuracy metric is reported.
+
+*Saving Predictions:*
+
+- saveSegmentation, saveProbMapsForEachClass : Specify whether you would like the segmentation masks and the probability maps of a class saved.
+
+
+#How can I use my local data to train the  model?
+
+The **.cfg configuration files** in `examples/configFiles/deepMedic/` provides parameters for creating and training DeepMedic. These parameters are similar (but not same) as what was used in our work in [[1](#citations)] and our winning contribution for the ISLES 2015 challenge [2]. In order to support a broader range of applications and users, the config files in `examples/configFiles/deepMedic/` are gradually updated with components that seem to improve the overall performance of the system. (Note: Original config as used in the mentioned papers can be found in archived github-branch 'dm_theano_v0.6.1_depr')
+
+To run the DeepMedic on your data, the following are the minimum steps you need to follow:
+
+**a)** **Pre-process your data** as described in Sec. [1.4](#14-required-data-pre-processing). Do not forget to normalise them to a zero-mean, unit-variance space. Produce ROI masks (for instance brain masks) if possible for the task.
+
+**b)** In the **modelConfig.cfg** file, change the variable `numberOfOutputClasses = 5` to the number of classes in your task (eg 2 if binary), and `numberOfInputChannels = 2` to the number of input modalities. Now you are ready to create the model via the `-newModel` option.
+
+**c)** (optional) If you want to train a bigger or smaller network, the easiest way is to increase/decrease the number of Feature Maps per layer. This is done by changing the number of FMs in the variable `numberFMsPerLayerNormal = [30, 30, 40, 40, 40, 40, 50, 50]`.
+
+**d)** Before you train a network you need to alter the **trainConfig.cfg** file, in order to let the software know where your input images are. The variable `channelsTraining = ["./trainChannels_flair.cfg", "./trainChannels_t1c.cfg"]` is pre-set to point to two files, one for each of the input variables. Adjust this for your task. 
+
+**e)** Create your files that correspond to the above `./trainChannels_flair.cfg, trainChannels_t1c.cfg` files for your task. Each of these files is essentially a list. Every file has an entry for each of the training subjects. The entry is the path to the .nii file with the corresponding modality image for the subject. A brief look to the provided exemplary files should make things clear.
+
+**f)** Do the same process in order to point to the ground-truth labels for training via the variable `gtLabelsTraining = "./trainGtLabels.cfg"` and to ROI masks (if available) via `roiMasksTraining = "./trainRoiMasks.cfg"`.
+
+**g)** If you wish to periodically perform **validation** throughout training, similar to the above, point to the files of validation subjects via the variables `channelsValidation`, `gtLabelsValidation` and `roiMasksValidation`. If you do not wish to perform validation (it is time consuming), set to `False` the variables `performValidationOnSamplesThroughoutTraining`
+and `performFullInferenceOnValidationImagesEveryFewEpochs`.
+
+**h)** (optional) If you need to adjust the length of the training session, eg for a smaller network, easiest way is to lower the total number of epochs `numberOfEpochs=35`. You should also then adjust the pre-defined schedule via `predefinedSchedule`. Another option is to use a decreasing schedule for the learning rate, by setting `typeOfLearningRateSchedule = 'poly'`.
+
+**i)** **To test** a trained network, you need to point to the images of the testing subjects, similar to point d) for the training. Adjust the variable `channels = ["./testChannels_flair.cfg", "./testChannels_t1c.cfg"]` to point to the modalities of the test subjects. If ROI masks are available, point to them via `roiMasks` and inference will only be performed within the ROI. Else comment this variable out. Similarly, if you provide the ground-truth labels for the testing subjects via `gtLabels`, accuracy of the prediction will be calculated and the DSC metric will be reported. Otherwise just comment this variable out.
+
+**j)** Finally, you need to create a file, which will list names to give to the predictions for each of the testing subject. See entry `namesForPredictionsPerCase = "./testNamesOfPredictionsSimple.cfg"` and the corresponding pre-set file. After that, you are ready to test with a model.
+
+The provided configuration of the DeepMedic takes roughly 2 days to get trained on an NVIDIA GTX Titan X. Inference on a standard size brain scan should take 2-3 minutes. Adjust configuration of training and testing or consider downsampling your data if it takes much longer for your task.
+
+
+#Config used 
+https://github.com/deepmedic/deepmedic/blob/dm_theano_v0.6.1_depr/examples/configFiles/deepMedic/model/modelConfig.cfg

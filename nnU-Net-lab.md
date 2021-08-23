@@ -165,5 +165,39 @@ nnUNet_ensemble -f FOLDER1 FOLDER2 ... -o OUTPUT_FOLDER -pp POSTPROCESSING_FILE
 
 ```
 
+#How can I use my local data to try to improve the pre-trained model ?
+This framework allows us to load an already trained model and to train it again in order to refine the results, provided that the new database we are going to call the local database is labeled to use it for training as well as it respects the properties of the database, you can consult them by using the following command
+```bash
+nnUNet_print_pretrained_model_info Task001_BrainTumour
+```
+If we want to make a summary of the method to follow:
+
+- Add the new data in the right directory in (nnUNet_raw_data_base/nnUNet_raw_data/TaskXXX_MYTASK, also see [here](dataset_conversion.md)).
+
+- Restart the preprocessing pipe line to verify the dataset integrity.
+```bash
+nnUNet_plan_and_preprocess -t XXX --verify_dataset_integrity
+```
+- Load the parameters of the pre-trained model if you want to use an existing model and restart the training using the command bellow:
+```bash
+nnUNet_train -h # To see documentation and all possible options
+#use the option -pretrained_weights and find the path to the pretrained model
+#Exemple hwo to use this option to train the model of the TAS01 (brain tumor segmentation
+#For FOLD in [0, 1, 2, 3, 4], run:
+#CONFIGURATIONS [2d , 3d_fullres , 3d_lowres , 3d_cascade_fullres ]
+#TRAINER_CLASS_NAME [nnUNetTrainerV2 , nnUNetTrainerV2CascadeFullRes ]
+#Dont forget to dapt the path to the .model file 
+nnUNet_train CONFIGURATION TRAINER_CLASS_NAME Task001_BrainTumour FOLD -pretrained_weights nnUNet/nnUNet_trained_models/nnUNet/3d_fullres/Task001_BrainTumour/nnUNetTrainerV2__nnUNetPlansv2.1/fold_FLOD/model_final_checkpoint.model -val --npz
+
+```
+
+If you want to use a new database with other modalities and that does not respect the same properties of the database used for the training you will have to create a new task that you find an example how to do it  [here]((dataset_conversion.md)).
+
+You can also modify or hear the preprocessing pipeline with other processing, you find more details here .
+
+Once the model has finished learning you can use it for segmentation in the same way as [here](#How to use the pre-trained model to segment brain tumors?).
+
+#How can I prepare my data ?
+
 
 
