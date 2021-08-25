@@ -7,6 +7,7 @@ The official documentation of the framework is available [here](https://github.c
 To facilitate the use of this document you will find a summary here which contains different scenarios of use of the framework.
 
 # Table of Contents
+##[How to install nnUnet on Ubuntu?](#How-to-install-nnUnet-on-Ubuntu?)
 - [How to install nnUnet on Ubuntu?](#How to install nnUnet on Ubuntu?)
 
 - [How to use the pre-trained model to segment brain tumors?](#How to use the pre-trained model to segment brain tumors?)
