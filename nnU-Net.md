@@ -360,7 +360,7 @@ Note that per default, inference will be done with all available folds. We very 
 Thus, all 5 folds must have been trained prior to running inference. The list of available folds nnU-Net found will be 
 printed at the start of the inference.
 
-#How to run nnUnet with pretrained models
+#How-to-run-nnUnet-with-pretrained-models
 Trained models for all challenges we participated in are publicly available. They can be downloaded and installed 
 directly with nnU-Net. Note that downloading a pretrained model will overwrite other models that were trained with 
 exactly the same configuration (2d, 3d_fullres, ...), trainer (nnUNetTrainerV2) and plans.
