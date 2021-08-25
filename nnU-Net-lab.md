@@ -8,11 +8,9 @@ To facilitate the use of this document you will find a summary here which contai
 
 # Table of Contents
 - [How to install nnUnet on Ubuntu?](#How-to-install-nnUnet-on-Ubuntu?)
-
-- [How to use the pre-trained model to segment brain tumors?](#How-to-use-the-pre-trained-model-to-segment-brain-tumors?)
-
-- [How can I use my local data to try to improve the pre-trained model?](#How-can-I-use-my-local-data-to-try-to-improve-the-pre-trained-model?)
-- [How can I prepare my data?](#How can I prepare my data?)
+- [How to use the pre-trained model to segment brain tumors](#How-to-use-the-pre-trained-model-to-segment-brain-tumors)
+- [How can I use my local data to try to improve the pre-trained model?](#How-can-I-use-my-local-data-to-try-to-improve-the-pre-trained-model)
+- [How can I prepare my data ?](#How-can-I-prepare-my-data)
 - [test](#test)
 
 
@@ -110,7 +108,7 @@ Also see Medical Segmentation Decathlon, http://medicaldecathlon.com/
 ........
 ```
 
-## How to use the pre-trained model to segment brain tumors?
+## How to use the pre-trained model to segment brain tumors
 Several pre-trained models are available, you can see the list of these models at the end of the installation step.
 To use the model that allows you to do segmentation of brain tumors try this commands:
 ```bash
@@ -166,14 +164,14 @@ nnUNet_ensemble -f FOLDER1 FOLDER2 ... -o OUTPUT_FOLDER -pp POSTPROCESSING_FILE
 
 ```
 
-## How can I use my local data to try to improve the pre-trained model ?
+## How can I use my local data to try to improve the pre-trained model
 This framework allows us to load an already trained model and to train it again in order to refine the results, provided that the new database we are going to call the local database is labeled to use it for training as well as it respects the properties of the database, you can consult them by using the following command
 ```bash
 nnUNet_print_pretrained_model_info Task001_BrainTumour
 ```
 If we want to make a summary of the method to follow:
 
-- Add the new data in the right directory in (nnUNet_raw_data_base/nnUNet_raw_data/TaskXXX_MYTASK, also see [here](dataset_conversion.md)).
+- Add the new data in the right directory in (nnUNet_raw_data_base/nnUNet_raw_data/TaskXXX_MYTASK, also see [here](dataset_conversion.md#How-to-update-an-existing-dataset)).
 
 - Restart the preprocessing pipe line to verify the dataset integrity.
 ```bash
@@ -194,11 +192,11 @@ nnUNet_train CONFIGURATION TRAINER_CLASS_NAME Task001_BrainTumour FOLD -pretrain
 
 If you want to use a new database with other modalities and that does not respect the same properties of the database used for the training you will have to create a new task that you find an example how to do it  [here](dataset_conversion.md).
 
-You can also modify or hear the preprocessing pipeline with other processing, you find more details here .
+You can also modify or hear the preprocessing pipeline with other processing, you find more details [here](extendingnnUnet.md) .
 
-Once the model has finished learning you can use it for segmentation in the same way as [here](#How to use the pre-trained model to segment brain tumors?).
+Once the model has finished learning you can use it for segmentation in the same way as [here](#How-to-use-the-pre-trained-model-to-segment-brain-tumors).
 
-## How can I prepare my data ?
+## How can I prepare my data
 
 
 ## test
