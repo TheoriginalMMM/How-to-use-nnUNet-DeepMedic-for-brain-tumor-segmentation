@@ -3,7 +3,7 @@
 # Table of Contents
 - [Installation](#Installation)
 - [Usage](#Usage)
-  * [How to run nnU-Net on a new dataset](#How to run nnu-net on a new dataset)
+  * [How to run nnU-Net on a new dataset](#How-to-run-nnu-net-on-a-new-dataset)
     + [Dataset conversion](#dataset-conversion)
     + [Experiment planning and preprocessing](#experiment-planning-and-preprocessing)
     + [Model training](#model-training)
@@ -15,7 +15,7 @@
       - [Multi GPU training](#multi-gpu-training)
     + [Identifying the best U-Net configuration](#identifying-the-best-u-net-configuration)
     + [Run inference](#run-inference)
-   * [How to run nnUnet with pretrained models](#How to run nnUnet with pretrained models)
+   * [How to run nnUnet with pretrained models](#How-to-run-nnUnet-with-pretrained-models)
   * [Examples](#examples)
 - [Information on run time and potential performance bottlenecks.](#information-on-run-time-and-potential-performance-bottlenecks)
 - [Common questions and issues](#common-questions-and-issues)
