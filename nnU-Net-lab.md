@@ -1,4 +1,4 @@
-# nnU-net lab
+w# nnU-net lab
 This document contains practical examples of how to use nnUnet to do automatic brain tumor segmentation.
 You will find instructions on how to start setting it up until you design a model trained on your own data.
 

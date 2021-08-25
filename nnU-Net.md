@@ -81,7 +81,7 @@ A typical installation of nnU-Net can be completed in less than 5 minutes. If py
 Given some dataset, nnU-Net fully automatically configures an entire segmentation pipeline that matches its properties. 
 nnU-Net covers the entire pipeline, from preprocessing to model configuration, model training, postprocessing 
 all the way to ensembling. After running nnU-Net, the trained model(s) can be applied to the test cases for inference. 
-
+#How to run nnu-net on a new dataset
 ### Dataset conversion
 nnU-Net expects datasets in a structured format. This format closely (but not entirely) follows the data structure of 
 the [Medical Segmentation Decthlon](http://medicaldecathlon.com/). Please read 
@@ -360,8 +360,7 @@ Note that per default, inference will be done with all available folds. We very 
 Thus, all 5 folds must have been trained prior to running inference. The list of available folds nnU-Net found will be 
 printed at the start of the inference.
 
-##How to run nnUnet with pretrained models
-
+#How to run nnUnet with pretrained models
 Trained models for all challenges we participated in are publicly available. They can be downloaded and installed 
 directly with nnU-Net. Note that downloading a pretrained model will overwrite other models that were trained with 
 exactly the same configuration (2d, 3d_fullres, ...), trainer (nnUNetTrainerV2) and plans.
