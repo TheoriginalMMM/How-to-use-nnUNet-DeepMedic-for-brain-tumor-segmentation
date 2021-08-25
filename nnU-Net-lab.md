@@ -11,8 +11,7 @@ To facilitate the use of this document you will find a summary here which contai
 
 - [How to use the pre-trained model to segment brain tumors?](#How-to-use-the-pre-trained-model-to-segment-brain-tumors?)
 
-- [How can I use my local data to try to improve the pre-trained model?](#How-can-I-use-my-local-data-to-try-to-improve the pre-trained model?)
-
+- [How can I use my local data to try to improve the pre-trained model?](#How-can-I-use-my-local-data-to-try-to-improve-the-pre-trained-model?)
 - [How can I prepare my data?](#How can I prepare my data?)
 - [test](#test)
 
@@ -202,5 +201,5 @@ Once the model has finished learning you can use it for segmentation in the same
 #How can I prepare my data ?
 
 
-##test
+#test
 sdhbfdgdsf
