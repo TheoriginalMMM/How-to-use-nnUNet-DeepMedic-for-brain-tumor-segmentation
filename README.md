@@ -7,8 +7,7 @@ You will find in this project two tutorials in two .md files each dedicated to a
 
 -[DeepMedic](DeepMedic.md)
 
-You can also find in this project a report with a state of the art for deep learning algorithms for brain tumor segmentation with more informations about nnUnet and DeepMedic.
-
+You can also find in this project a report with a state of the art for deep learning algorithms for brain tumor segmentation with more informations about nnUnet.
 
 This project has been developed for the Marc Jeannerod Institute of Cognitive Sciences (ISC-MJ) and will be useful for internal research projects of this last.
 
