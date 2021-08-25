@@ -13,28 +13,42 @@ python3 -c 'import tensorflow as tf; print(tf.__version__)'
 
 conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia
 
-cd RepInstalation
+cd [RepInstalation]
 
 git clone https://github.com/MIC-DKFZ/nnUNet.git
 cd nnUNet
 pip install -e
 
 SetUp Paths:
-nnUNet_raw_data_base (lA ou l'utilisateur va préparaer la bonne structure de la data )
-nnUNet_preprocessed ( De préference sur un disk rapide ssd)
-RESULTS_FOLDER : pour sauvgarder les poids des models à la fin.
+nnUNet_raw_data_base (Pa ou l'utilisateur va préparaer la bonne structure de la data - la base de donnée )
+nnUNet_preprocessed ( De préference sur un disk rapide ssd pour lecture ecriture par le model)
+RESULTS_FOLDER : (Pour sauvgarder les poids des models à la fin.)
 
 Solution :
 export nnUNet_raw_data_base="/media/fabian/nnUNet_raw"
 export nnUNet_preprocessed="/media/fabian/nnUNet_preprocessed"
 export RESULTS_FOLDER="/media/fabian/nnUNet_trained_models"
 
-
 (OPTIONAL) Install hiddenlayer : (pour visiuaiserdes plots)
 pip install --upgrade git+https://github.com/FabianIsensee/hiddenlayer.git@more_plotted_details#egg=hiddenlayer
 
 #Instalation check
 nnUNet_print_available_pretrained_models
+
+#Installer le model préentrainé :
+nnUNet_download_pretrained_model Task001_BrainTumour
+
+#Vefifier que le préprocesse et la bd est bien organisé
+nnUNet_plan_and_preprocess -h
+nnUNet_plan_and_preprocess -t --verify_dataset_integrity
+
+#prediction
+nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m CONFIGURATION --save_npz
+
+
+
+
+
 
 #DeepMedic istall
 
