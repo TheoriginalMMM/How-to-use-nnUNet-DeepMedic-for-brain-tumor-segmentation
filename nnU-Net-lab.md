@@ -7,12 +7,11 @@ The official documentation of the framework is available [here](https://github.c
 To facilitate the use of this document you will find a summary here which contains different scenarios of use of the framework.
 
 # Table of Contents
-##[How to install nnUnet on Ubuntu?](#How-to-install-nnUnet-on-Ubuntu?)
-- [How to install nnUnet on Ubuntu?](#How to install nnUnet on Ubuntu?)
+- [How to install nnUnet on Ubuntu?](#How-to-install-nnUnet-on-Ubuntu?)
 
-- [How to use the pre-trained model to segment brain tumors?](#How to use the pre-trained model to segment brain tumors?)
+- [How to use the pre-trained model to segment brain tumors?](#How-to-use-the-pre-trained-model-to-segment-brain-tumors?)
 
-- [How can I use my local data to try to improve the pre-trained model?](#How can I use my local data to try to improve the pre-trained model?)
+- [How can I use my local data to try to improve the pre-trained model?](#How-can-I-use-my-local-data-to-try-to-improve the pre-trained model?)
 
 - [How can I prepare my data?](#How can I prepare my data?)
 
@@ -192,7 +191,7 @@ nnUNet_train CONFIGURATION TRAINER_CLASS_NAME Task001_BrainTumour FOLD -pretrain
 
 ```
 
-If you want to use a new database with other modalities and that does not respect the same properties of the database used for the training you will have to create a new task that you find an example how to do it  [here]((dataset_conversion.md)).
+If you want to use a new database with other modalities and that does not respect the same properties of the database used for the training you will have to create a new task that you find an example how to do it  [here](dataset_conversion.md).
 
 You can also modify or hear the preprocessing pipeline with other processing, you find more details here .
 
