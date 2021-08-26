@@ -1,0 +1,62 @@
+echo "Hellow word"
+echo "Début de préparation d'environnement pour utiliser le nnUNet
+Cette préparation reste valide juste pour le terminal que vos êtes en train d'utiliser actuellement.
+Si vous le fermez par erreur ou que vous voudrez utiliser le nnUNet avec un autre terminal, il faudra relancer ce script avec la commande suivante :
+la préparation consiste à choisir l'emplacement de trois répertoires obligatoire pour le fonctionnement de nnUnet :
+###############
+nnUNet_raw_data_base : C'est là où vous allez mettre vos données (IRM) et les organiser dans le bon format vous trouverez plus d'information dans le répertoire documentation "dataset_conversion.md".
+
+nnUNet_preprocessed: le framework va utiliser ce répertoire pour stocker les images après le pré-traitement. Il est recommandé que ce répertoire soit sur un disque rapide. (avec une bonne vitesse de lécture\écreture)
+RESULTS_FOLDER: c'est là ou les résultats de la segmentation vont être sauvegardé.
+
+Pour commencer merci de choisir un chemin vers le nnUnet_raw_data:
+(exemple d'un chemin possible: /home/nnUnetdata/nnUNet_raw_data_base)
+"
+read nnUnet_raw_dataIN
+echo $nnUnet_raw_dataIN
+if [ -d $nnUnet_raw_dataIN ]; then
+ # Code exécuté si la variable $REPERTOIRE correspond bien à un répertoire
+ echo $nnUnet_raw_data
+ echo "Un bon choix, le répertoire existe déja";
+ export nnUNet_raw_data_base=$nnUnet_raw_dataIN
+else
+echo "Le repertoire n'existe pas, il va etre creer"
+mkdir $nnUnet_raw_dataIN
+fi
+export nnUNet_raw_data_base=$nnUnet_raw_dataIN
+echo "Variable content "
+echo $nnUNet_raw_data_base
+echo "raw_data_set_up_success !"
+
+echo "Merci de choisir un chemin vers le nnUNet_preprocessed:
+(exemple d'un chemin possible: nnUNet_preprocessed)"
+read nnUNet_preprocessedIN
+if [ -d $nnUNet_preprocessedIN ]; then
+ # Code exécuté si la variable $REPERTOIRE correspond bien à un répertoire
+ echo $nnUNet_preprocessedIN
+ echo "Un bon choix, le répertoire existe déja"
+ export nnUNet_preprocessed=$nnUnet_preprocessedIN
+else
+mkdir $nnUNet_preprocessedIN
+echo "ON CREER LE REPERTOIR"
+fi
+export nnUNet_preprocessed=$nnUNet_preprocessedIN
+echo "nnUNet_preprocessed :"
+echo $nnUNet_preprocessed
+echo "Merci de choisir un chemin vers le RESULTS_FOLDER:
+(exemple d'un chemin possible: /home/nnUnetdata/nnUNet_RESULTS) "
+
+read nnUNet_RESULTSIN
+if [ -d $nnUNet_RESULTSIN ]; then
+ # Code exécuté si la variable $REPERTOIRE correspond bien à un répertoire
+ echo $RESULTS_FOLDER
+ echo "Un bon choix, le répertoire existe déja";
+ export RESULTS_FOLDER=$nnUNet_RESULTSIN
+else
+mkdir $nnUNet_RESULTSIN
+fi
+export RESULTS_FOLDER=$nnUNet_RESULTSIN
+echo "nnUNet_RESULTS:"
+echo $RESULTS_FOLDER
+echo "Parfait les chemins sont bien initialisé, vous pouvez les consulter plus tard en utilisant la commande
+echo [$nom de la variable]"

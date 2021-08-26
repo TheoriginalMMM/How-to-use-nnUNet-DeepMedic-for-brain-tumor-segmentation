@@ -68,6 +68,12 @@ sudo nano .bashrc
 export nnUNet_raw_data_base="/media/fabian/nnUNet_raw"
 export nnUNet_preprocessed="/media/fabian/nnUNet_preprocessed"
 export RESULTS_FOLDER="/media/fabian/nnUNet_trained_models"
+
+#Another solution for isc users, try just to run setUpPaths using this command:
+./setUpPaths
+After that you will be able to configure the variables by entering the three paths
+#PS: the paths that the terminal will ask you will be considered from the current directory.
+#Examples and explanations will also be displayed on the terminal by running the above command
 ```
 
 You are almost done with the installation, if you want to visualize the drives you can install this package with this command:
