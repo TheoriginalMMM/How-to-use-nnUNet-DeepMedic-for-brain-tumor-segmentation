@@ -154,6 +154,7 @@ Here is the content of the dataset.json from the Prostate task:
      "test": ["./imagesTs/prostate_08.nii.gz","./imagesTs/prostate_22.nii.gz","./imagesTs/prostate_30.nii.gz",...]
      }
 
+
 Note that we truncated the "training" and "test" lists for clarity. You need to specify all the cases in there. If you 
 don't have test images (imagesTs does not exist) you can leave "test" blank: `"test": []`.
 

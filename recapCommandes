@@ -1,0 +1,29 @@
+HELLO USER, IF YOU DONT KNOW HWO TO USE A COMMANDE TRY TO USE -h option to get more information on 
+command line
+########################################################################
+Convertir une base de donnée de DECHATLON a une base de donnée compatible nnUnet 
+
+nnUNet_convert_decathlon_task -i FOLDER_TO_TASK_AS_DOWNLOADED_FROM_MSD -p NUM_PROCESSES
+########################################################################
+Identifying the best U-Net configuration
+nnUNet_find_best_configuration -m 2d 3d_fullres 3d_lowres 3d_cascade_fullres -t XXX --strict
+(all 5 folds need to be completed for all specified configurations!)
+--strict (crash if one of the requested configurations is missing) 
+more informations see nnU-Net.md#model-training 
+########################################################################
+#################commande to segment image###################
+nnUNet_predict -i [inputFolder] -m [model] -t XXX -o [output_folder]
+XXX for brain tumor segmentation is 001
+#########################################################################
+To train a model:
+
+nnUNet_train CONFIGURATION TRAINER_CLASS_NAME TASK_NAME_OR_ID FOLD -val --npz
+#########################################################################
+
+FOR MORE INFORMATION CHECK THE .md fiels of documentation or the officiel documentation
+
+
+Thanke you.
+
+
+

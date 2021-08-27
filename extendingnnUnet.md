@@ -1,6 +1,7 @@
 
 # Extending/Changing nnU-Net
 
+
 To use nnU-Net as a framework and make changes to its components, please make sure to install it with the `git clone` 
 and `pip install -e .` commands so that a local copy of the code is created.
 Changing components of nnU-Net needs to be done in different places, depending on whether these components belong to 
@@ -10,6 +11,7 @@ you a good indication of where to start.
 Generally it is recommended to look into the code where the thing you would like to change is currently implemented 
 and then derive a strategy on how to change it. If you have any questions, feel free to open an issue on GitHub and 
 we will help you as much as we can.
+
 
 ## Changes to blueprint parameters
 This section gives guidance on how to implement changes to loss function, training schedule, learning rates, optimizer, 

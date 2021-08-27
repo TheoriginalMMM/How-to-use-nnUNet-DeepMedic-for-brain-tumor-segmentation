@@ -1,4 +1,4 @@
-w# nnU-net lab
+# nnU-net lab
 This document contains practical examples of how to use nnUnet to do automatic brain tumor segmentation.
 You will find instructions on how to start setting it up until you design a model trained on your own data.
 
@@ -11,7 +11,6 @@ To facilitate the use of this document you will find a summary here which contai
 - [How to use the pre-trained model to segment brain tumors](#How-to-use-the-pre-trained-model-to-segment-brain-tumors)
 - [How can I use my local data to try to improve the pre-trained model?](#How-can-I-use-my-local-data-to-try-to-improve-the-pre-trained-model)
 - [How can I prepare my data ?](#How-can-I-prepare-my-data)
-- [test](#test)
 
 
 ## How to install nnUnet on Ubuntu?
@@ -70,9 +69,8 @@ export nnUNet_preprocessed="/media/fabian/nnUNet_preprocessed"
 export RESULTS_FOLDER="/media/fabian/nnUNet_trained_models"
 
 #Another solution for isc users, try just to run setUpPaths using this command:
-./setUpPaths
-After that you will be able to configure the variables by entering the three paths
-#PS: the paths that the terminal will ask you will be considered from the current directory.
+./scriptSETUPpaths
+#After that you will be able to configure the variables by entering the three paths
 #Examples and explanations will also be displayed on the terminal by running the above command
 ```
 
@@ -203,7 +201,12 @@ You can also modify or hear the preprocessing pipeline with other processing, yo
 Once the model has finished learning you can use it for segmentation in the same way as [here](#How-to-use-the-pre-trained-model-to-segment-brain-tumors).
 
 ## How can I prepare my data
+Before using a new database you should put it in the right format as shown in this [example](data_format_inference.md), and check its integrity with the following command:
+```bash
+nnUNet_plan_and_preprocess -t XXX --verify_dataset_integrity
+```
+Once you have verified these two steps you can launch the training of your model as was done [here](nnU-Net.md#model-training) .
 
+Once the training is finished you can use the model either for a prediction with the best architecture (example [here](nnU-Net.md#run-inference) or [here](inference_example_Prostate.md)) or assemble several predictions as here.
 
-## test
-sdhbfdgdsf
+It is also possible to extend or modify some parts to adapt them to your needs

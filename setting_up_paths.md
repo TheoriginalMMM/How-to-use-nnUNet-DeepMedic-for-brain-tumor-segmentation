@@ -82,3 +82,6 @@ export RESULTS_FOLDER="/media/fabian/nnUNet_trained_models"
 This will set the paths for the current terminal session only (the variables will be lost if you close the terminal 
 and need to be reset every time).
 
+You can also run scriptSETUPpaths to do this automatically.
+
+

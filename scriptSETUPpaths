@@ -10,13 +10,13 @@ nnUNet_preprocessed: le framework va utiliser ce répertoire pour stocker les im
 RESULTS_FOLDER: c'est là ou les résultats de la segmentation vont être sauvegardé.
 
 Pour commencer merci de choisir un chemin vers le nnUnet_raw_data:
-(exemple d'un chemin possible: /home/nnUnetdata/nnUNet_raw_data_base)
-"
+Penser bien à l'adapter
+exemple d'un chemin possible: \"/home/common/gadgetron/nnUNet_raw_data_base\" "
 read nnUnet_raw_dataIN
 echo $nnUnet_raw_dataIN
 if [ -d $nnUnet_raw_dataIN ]; then
  # Code exécuté si la variable $REPERTOIRE correspond bien à un répertoire
- echo $nnUnet_raw_data
+ echo $nnUnet_raw_dataIN
  echo "Un bon choix, le répertoire existe déja";
  export nnUNet_raw_data_base=$nnUnet_raw_dataIN
 else
@@ -24,12 +24,12 @@ echo "Le repertoire n'existe pas, il va etre creer"
 mkdir $nnUnet_raw_dataIN
 fi
 export nnUNet_raw_data_base=$nnUnet_raw_dataIN
-echo "Variable content "
+echo "Variable nnUNet_raw_data_base content :"
 echo $nnUNet_raw_data_base
 echo "raw_data_set_up_success !"
-
+echo "#########################"
 echo "Merci de choisir un chemin vers le nnUNet_preprocessed:
-(exemple d'un chemin possible: nnUNet_preprocessed)"
+exemple d'un chemin possible: \"/home/common/gadgetron/nnUNet_preprocessed\" "
 read nnUNet_preprocessedIN
 if [ -d $nnUNet_preprocessedIN ]; then
  # Code exécuté si la variable $REPERTOIRE correspond bien à un répertoire
@@ -41,15 +41,16 @@ mkdir $nnUNet_preprocessedIN
 echo "ON CREER LE REPERTOIR"
 fi
 export nnUNet_preprocessed=$nnUNet_preprocessedIN
-echo "nnUNet_preprocessed :"
+echo "nnUNet_preprocessed  content:"
 echo $nnUNet_preprocessed
-echo "Merci de choisir un chemin vers le RESULTS_FOLDER:
-(exemple d'un chemin possible: /home/nnUnetdata/nnUNet_RESULTS) "
+echo "nnUNet_preprocessed set_up_success !"
 
+echo "Merci de choisir un chemin vers le RESULTS_FOLDER:
+exemple d'un chemin possible: \"/home/common/gadgetron/nnUNet_RESULTS\" "
 read nnUNet_RESULTSIN
 if [ -d $nnUNet_RESULTSIN ]; then
  # Code exécuté si la variable $REPERTOIRE correspond bien à un répertoire
- echo $RESULTS_FOLDER
+ echo $nnUNet_RESULTSIN
  echo "Un bon choix, le répertoire existe déja";
  export RESULTS_FOLDER=$nnUNet_RESULTSIN
 else
@@ -58,5 +59,8 @@ fi
 export RESULTS_FOLDER=$nnUNet_RESULTSIN
 echo "nnUNet_RESULTS:"
 echo $RESULTS_FOLDER
+echo "##########################"
+
 echo "Parfait les chemins sont bien initialisé, vous pouvez les consulter plus tard en utilisant la commande
 echo [$nom de la variable]"
+
