@@ -3,9 +3,9 @@ In this project you will find a tutorial on how to train or/and use a pre-traine
 
 You will find in this project two tutorials in two .md files each dedicated to a specific model/framwork:
 
--[nnU-Net](nnU-Net.md)
+- [nnU-Net](nnU-Net.md)
 
--[DeepMedic](DeepMedic.md)
+- [DeepMedic](DeepMedic.md)
 
 This project has been developed for the Marc Jeannerod Institute of Cognitive Sciences (ISC-MJ) and will be useful for internal research projects of this last.
 
@@ -13,8 +13,8 @@ This project has been developed for the Marc Jeannerod Institute of Cognitive Sc
 
 Credit :
 
--[nnUNet](https://github.com/MIC-DKFZ).
+- [nnUNet](https://github.com/MIC-DKFZ).
 
--[DeepMedic](https://github.com/deepmedic/deepmedic).
+- [DeepMedic](https://github.com/deepmedic/deepmedic).
 
 
